@@ -66,5 +66,18 @@ d3.csv("../Data/mtcars.csv",
             .select('model');
         
         console.log(aq_filt);
+
+        // Joining
+
+        let new_table = aq.table({
+            cyl: ['4', '6', '8'], 
+            price: [30000, 50000, 90000], 
+            availability: ['High', 'Low', 'None']
+        });
+
+        aq_joined = aq_tabl
+            .join(new_table, 'cyl');
+
+        console.log(aq_joined);
     }
 )
