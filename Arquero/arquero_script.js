@@ -62,7 +62,7 @@ d3.csv("../Data/mtcars.csv",
 
         aq_filt = aq_tabl
             .filter(d => d.hp > 200)
-            .reify()
+            .reify() // Converts from a mask to a new data set
             .select('model');
         
         console.log(aq_filt);
@@ -79,5 +79,33 @@ d3.csv("../Data/mtcars.csv",
             .join(new_table, 'cyl');
 
         console.log(aq_joined);
+
+        // Pivoting wider
+        // Without aggregation
+
+        let new_table_2 = aq.table({
+            brand: ['Ford', 'Ford', 'Ford', 'Ford', 'Chevy', 'Chevy', 'Chevy', 'Chevy'], 
+            body: ['Sedan', 'Truck', 'Sedan', 'Truck', 'Sedan', 'Truck', 'Sedan', 'Truck'], 
+            total: [46, 21, 90, 102, 32, 59, 96, 291]
+        });
+
+        aq_wider = new_table_2.slice(2,6)
+            .groupby('brand')
+            // Names, Values
+            .pivot('body', 'total');
+        
+        console.log(aq_wider);
+
+        // Pivoting wider
+        // With aggregation
+        
+        aq_wider2 = new_table_2
+            .groupby('brand')
+            .pivot(
+            { body: d => d.body }, 
+            { total: d => op.sum(d.total) }
+            );
+        
+        console.log(aq_wider2);
     }
 )
