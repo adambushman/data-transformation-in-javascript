@@ -107,5 +107,33 @@ d3.csv("../Data/mtcars.csv",
             );
         
         console.log(aq_wider2);
+
+        // Pivoting longer
+        
+        let new_table_3 = aq.table({
+            product: ['Keyboard', 'Mouse'], 
+            jan: [24, 15], 
+            feb: [12, 23], 
+            mar: [42, 53], 
+            apr: [34, 47], 
+            may: [57, 36], 
+            jun: [63, 63], 
+            jul: [37, 74], 
+            aug: [24, 86], 
+            sep: [38, 38], 
+            oct: [93, 64], 
+            nov: [25, 43], 
+            dec: [12, 32]
+        })
+
+        aq_longer1 = data_pl1
+            .fold(
+                aq.range('jan', 'dec'), 
+                {as: ['month', 'total']}
+            )
+            .view();
+
+        console.log(aq_longer1);
+
     }
 )
