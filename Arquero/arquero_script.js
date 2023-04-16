@@ -126,14 +126,23 @@ d3.csv("../Data/mtcars.csv",
             dec: [12, 32]
         })
 
-        aq_longer1 = data_pl1
+        aq_longer1 = new_table_3
             .fold(
                 aq.range('jan', 'dec'), 
                 {as: ['month', 'total']}
-            )
-            .view();
+            );
 
         console.log(aq_longer1);
+
+        // Roll into array
+
+        aq_rolled = aq_longer1
+            .groupby('month')
+            .rollup({
+                sales_arr: d => op.array_agg(d.total)
+            });
+
+        console.log(aq_rolled);
 
     }
 )
