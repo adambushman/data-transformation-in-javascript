@@ -144,5 +144,12 @@ d3.csv("../Data/mtcars.csv",
 
         console.log(aq_rolled);
 
+        // Unroll an array
+
+        aq_unrolled = aq_rolled
+            .unroll('sales_arr');
+
+        console.log(aq_unrolled);
+
     }
 )
