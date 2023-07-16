@@ -1,3 +1,5 @@
+![JavaScript Banner](./javascript-banner.png)
+
 # Data Transformation in JavaScript
 
 Experimenting with data transformation libraries in JavaScript.
